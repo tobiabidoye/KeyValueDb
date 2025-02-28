@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include <cstring>
 #include <stdio.h>
 #include <stdlib.h> 
 #include <unistd.h>
@@ -9,6 +10,8 @@
 #include<arpa/inet.h>
 #include <stdbool.h>
 #include <string.h>
+
+const size_t k_max_msg = 4096;
 
 static int32_t read_full(int fd, char * buf, size_t n){ //function cannot be called from outside file
     while(n > 0){
@@ -57,20 +60,40 @@ static void msg(const char * msg){
 }
 
 
-static void do_something(int connfd){
-    char rbuf[64] = {};
-    ssize_t n = read(connfd, rbuf, sizeof(rbuf) - 1); // read from client socket
-    if(n < 0){
-        msg("read() error");
-        return;
 
+static int32_t one_request(int connfd){
+    
+    char rbuf[4+k_max_msg]; 
+    errno = 0; 
+    int32_t err = read_full(connfd, rbuf, 4); 
+    
+    if(err){
+        msg(errno == 0 ?"EOF": "read()error");
+        return err;
     }
-    printf("client says: %s \n", rbuf);
-    char wbuf[] = "world"; 
-    write(connfd, wbuf, strlen(wbuf)); //write back to that same socket
+    
+    uint32_t len = 0;
+    //compute to see if length of recerived message is too long
+    memcpy(&len, rbuf, 4);
+    if(len > k_max_msg){
+        msg("too long"); 
+        return -1;
+    }
+    //request body
+    err = read_full(connfd, &rbuf[4], len);
+    if(err){
+        msg("read() error");
+        return err;
+    }
 
+    printf("client says: %.*s\n", len, &rbuf[4]);
+    const char reply[] = "world"; 
+    char wbuf[4 + sizeof(reply)];
+    len = (uint32_t) strlen(reply); 
+    memcpy(wbuf, &len, 4); 
+    memcpy(&wbuf[4], reply, len);
+    return write_all(connfd, wbuf, 4+len);
 }
-
 
 int main(){
     int fd = socket(AF_INET, SOCK_STREAM, 0); 
