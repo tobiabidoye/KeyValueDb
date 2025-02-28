@@ -1,4 +1,4 @@
-#include <cassert>
+#include <assert.h>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -39,7 +39,7 @@ static int32_t write_all(int fd, const char * buf, size_t n){
         if(rv <= 0){
             return -1;
         }
-        assert((ssize_t)rv <= n);
+        assert((size_t)rv <= n);
         n -= (size_t)rv; 
         buf += rv;
 

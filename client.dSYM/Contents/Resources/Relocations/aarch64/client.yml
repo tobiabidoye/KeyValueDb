@@ -2,10 +2,12 @@
 triple:          'arm64-apple-darwin'
 binary-path:     client
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D14, symSize: 0x10C }
-  - { offsetInCU: 0xD58, offset: 0xD58, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D14, symSize: 0x10C }
-  - { offsetInCU: 0xF6E, offset: 0xF6E, size: 0x8, addend: 0x0, symName: _main.cold.1, symObjAddr: 0x10C, symBinAddr: 0x100003E28, symSize: 0x3C }
-  - { offsetInCU: 0xFA4, offset: 0xFA4, size: 0x8, addend: 0x0, symName: _main.cold.3, symObjAddr: 0x184, symBinAddr: 0x100003EA0, symSize: 0x3C }
-  - { offsetInCU: 0xFDA, offset: 0xFDA, size: 0x8, addend: 0x0, symName: _main.cold.2, symObjAddr: 0x148, symBinAddr: 0x100003E64, symSize: 0x3C }
-  - { offsetInCU: 0x1010, offset: 0x1010, size: 0x8, addend: 0x0, symName: _OUTLINED_FUNCTION_0, symObjAddr: 0x1C0, symBinAddr: 0x100003E20, symSize: 0x8 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AA8, symSize: 0xCC }
+  - { offsetInCU: 0x1234, offset: 0x1234, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AA8, symSize: 0xCC }
+  - { offsetInCU: 0x139E, offset: 0x139E, size: 0x8, addend: 0x0, symName: __ZL5queryiPKc, symObjAddr: 0xCC, symBinAddr: 0x100003B74, symSize: 0x208 }
+  - { offsetInCU: 0x15BC, offset: 0x15BC, size: 0x8, addend: 0x0, symName: _main.cold.1, symObjAddr: 0x2D4, symBinAddr: 0x100003D7C, symSize: 0x40 }
+  - { offsetInCU: 0x15F2, offset: 0x15F2, size: 0x8, addend: 0x0, symName: _main.cold.2, symObjAddr: 0x314, symBinAddr: 0x100003DBC, symSize: 0x40 }
+  - { offsetInCU: 0x1714, offset: 0x1714, size: 0x8, addend: 0x0, symName: __ZL5queryiPKc.cold.2, symObjAddr: 0x37C, symBinAddr: 0x100003E24, symSize: 0x28 }
+  - { offsetInCU: 0x1740, offset: 0x1740, size: 0x8, addend: 0x0, symName: __ZL5queryiPKc.cold.3, symObjAddr: 0x3A4, symBinAddr: 0x100003E4C, symSize: 0x28 }
+  - { offsetInCU: 0x176C, offset: 0x176C, size: 0x8, addend: 0x0, symName: __ZL5queryiPKc.cold.1, symObjAddr: 0x354, symBinAddr: 0x100003DFC, symSize: 0x28 }
 ...
