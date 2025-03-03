@@ -14,9 +14,11 @@
 #include <string.h>
 
 const size_t k_max_msg = 4096;
+
 static void msg(const char * msg){
     fprintf(stderr, "%s\n", msg);
 }
+
 static int32_t read_full(int fd, char * buf, size_t n){ //function cannot be called from outside file
     while(n > 0){
         // n is count of items
@@ -100,6 +102,7 @@ static int32_t query(int fd, const char * text){
     printf("server says: %.*s\n", len, &rbuf[4]);
     return 0;
 }
+
 int main(){
 
     int fd = socket(AF_INET, SOCK_STREAM, 0);
